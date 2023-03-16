@@ -1,0 +1,19 @@
+def inputFile = new File("input.txt")
+def outputFile = new File("output.txt")
+def wordCountMap = [:]
+
+inputFile.eachLine { line ->
+    line.tokenize().each { word ->
+        if (wordCountMap.containsKey(word)) {
+            wordCountMap[word]++
+        } else {
+            wordCountMap[word] = 1
+        }
+    }
+}
+
+outputFile.withWriter { writer ->
+    wordCountMap.sort { a, b -> b.value <=> a.value }.each { entry ->
+        writer.writeLine("${entry.key}: ${entry.value}")
+    }
+}
