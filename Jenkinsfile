@@ -1,6 +1,15 @@
 
 pipeline {
   agent  any
+
+  options {
+    disableConcurrentBuilds()
+  }
+
+  parameters {
+    string( name: 'TEST_ENVIRONMENT', defaultValue: 'local_host', description: 'Provide test environment name')
+  }
+
   environment {
     AUTOMATION_PATH = "automation/"
     ALLURE_REPORT = "automation/target/allure_reports"
@@ -14,10 +23,14 @@ pipeline {
     }
     stage('Run test') {
       steps {
-        sh """
-          cd ${AUTOMATION_PATH}
-          python3 -m pytest -v  --alluredir=target/allure_reports  test/test_groovy_api.py
-        """
+        script {
+          TESTBED_CONFIG = "resources/testbeds/${params.TEST_ENVIRONMENT}.yml"
+          VALIDATION_CONFIG = "resources/validation/validation_config.yml"
+          sh """
+            cd ${AUTOMATION_PATH}
+            python3 -m pytest -v  --testbed=${TESTBED_CONFIG} --validationConfig=${VALIDATION_CONFIG} --alluredir=target/allure_reports  test/test_groovy_api.py
+          """
+        }
       }
     }
   }
