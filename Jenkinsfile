@@ -16,7 +16,7 @@ pipeline {
       steps {
         sh """
           cd ${AUTOMATION_PATH}
-          python -m pytest -v  --alluredir=target/allure_reports  test/test_groovy_api.py
+          python3 -m pytest -v  --alluredir=target/allure_reports  test/test_groovy_api.py
         """
       }
     }
