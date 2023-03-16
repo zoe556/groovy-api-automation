@@ -108,16 +108,16 @@ class TestGroovyApi:
         # Check that the request returns a 400 error
         assert response.status_code == 400
 
-    def test_two_requests_parallel(self, api_actions):
-        """Test send two requests sending parallel"""
-        # create 2 codes to submit to the service
+    def test_two_requests_execute_parallel(self, api_actions):
+        """Test two requests sending at same time, executing parallel"""
+        # create 2 test codes to
         codes = ["5 * 5", "7 * 7"]
         # send the requests at same time to the service using ThreadPoolExecutor
         with ThreadPoolExecutor(max_workers=2) as executor:
             futures = [
                 executor.submit(api_actions.submit_code_and_require_result,(f"user_{i+1}", f"pass_{i+1}"), code)
                 for i, code in enumerate(codes)]
-        # check that the first two tasks are completed
+        # check the two tasks status
         status_1 = futures[0].result().json()["status"]
         assert status_1 in ("COMPLETED", 'IN_PROGRESS')
         status_2 = futures[1].result().json()["status"]
