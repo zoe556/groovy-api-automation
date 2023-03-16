@@ -7,14 +7,9 @@ pipeline {
     ALLURE_REPORT_LINK = "${BUILD_URL}/allure/"
   }
   stages {
-    stage('version') {
-      steps {
-        sh 'python3 --version'
-      }
-    }
     stage('Install requirements') {
       steps {
-        sh 'pip install --no-cache-dir -r ${AUTOMATION_PATH}requirements.txt'
+        sh 'pip3 install --no-cache-dir -r ${AUTOMATION_PATH}requirements.txt'
       }
     }
     stage('Run test') {

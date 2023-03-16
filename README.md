@@ -12,7 +12,7 @@ The project uses:
 
 ## Test Arguments
 
-The following default arguments are common to multiple tests:
+The following default arguments are used for tests:
 * `--testbed=resources/testbeds/local_host.yml` defines the environment being tested
 * `--validationConfig=resources/validation/validation_config.yml` defines validation used by some tests
 
