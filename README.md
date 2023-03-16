@@ -20,11 +20,11 @@ The following default arguments are used for tests:
 
 - **Without Allure Test report**
 ```
-python -m pytest -v  test/test_groovy_api.py
+python3 -m pytest -v  test/test_groovy_api.py
 ```
 - **With Allure Test report**
 ```
- python -m pytest -v  --alluredir=target/allure_reports  test/test_groovy_api.py  
+ python3 -m pytest -v  --alluredir=target/allure_reports  test/test_groovy_api.py  
 ```
 Show generated report in browser:
 ```
