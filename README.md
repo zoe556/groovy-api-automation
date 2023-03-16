@@ -7,8 +7,8 @@ The project uses:
 1. Python 3.9 and higher
 2. Pytest
 3. Requests
-4. Allure Framework for reports
-5. CI (GitHub actions)
+4. Yaml
+5. Allure Framework for reports
 
 ## Test Arguments
 
