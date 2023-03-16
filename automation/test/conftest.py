@@ -5,11 +5,11 @@ import yaml
 def pytest_addoption(parser):
     parser.addoption(
         "--testbed", action="store", default='./resources/testbeds/local_host.yml',
-        help="Override the default config file"
+        help="defines the environment being tested"
     )
     parser.addoption(
         "--validationConfig", action="store", default='./resources/validation/validation_config.yml',
-        help="Override the default config file"
+        help="defines validation used by some tests"
     )
 
 
